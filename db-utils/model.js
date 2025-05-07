@@ -97,6 +97,7 @@ const bookingSchema = new Schema({
         type: String,
         default: "booked",
       },
+      
   });
   
   const bookingModel = new model("booking", bookingSchema, "bookings");

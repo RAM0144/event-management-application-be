@@ -6,7 +6,7 @@ import cors from "cors"
 import eventRouter from "./router/event.js"
 import vendorRouter from "./router/vendor.js"
 import bookingRouter from "./router/booking.js"
-
+import verifyJWT from "./middleware.js"
 
 const server = express()
 
@@ -18,13 +18,12 @@ dotenv.config()
 
 await connectToDB()
 
+
 server.use("/auth", authRouter)
 
-
-
-server.use("/events", eventRouter)
-server.use("/vendors", vendorRouter)
-server.use("/bookings", bookingRouter);
+server.use("/events",verifyJWT, eventRouter)
+server.use("/vendors",verifyJWT, vendorRouter)
+server.use("/bookings",verifyJWT, bookingRouter);
 
 const port = 4800
 

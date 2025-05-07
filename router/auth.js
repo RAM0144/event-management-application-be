@@ -15,7 +15,8 @@ authRouter.post("/register", async(req, res) => {
  
         const userId = Date.now().toString()
 
-        const newUser = new userModel({ username, email, userId, password: hashedPassword });
+        const newUser = new userModel({ username, email, userId, 
+            password: hashedPassword });
         await newUser.save();
         
         res.status(201).send({ msg: "User registered successfully" });
